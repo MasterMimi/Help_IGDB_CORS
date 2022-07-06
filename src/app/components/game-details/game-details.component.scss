@@ -1,0 +1,187 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap');
+
+.title {
+    font-family: "Londrina Solid", cursive;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.background{
+	--background: url('/assets/images/new/background.png')0 0/100% 100% no-repeat;
+}
+
+.header{
+	--background: rgb(78, 16, 116);
+    --color: white;
+}
+
+.cover-style{
+    border-style: solid;
+    border-color: #4E1075;
+    border-width: 5px;
+}
+
+//quadrado de texto 1
+.name-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 25px;
+    margin: 0px;
+
+    --color: #FFFFFF;
+    --background: #1E0230;
+}
+
+//quadrado de texto 2
+.genre-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0px;
+
+    --color: #6994BC;
+    --background: #3D0461;
+}
+
+//quadrado de texto 3
+.platform-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0px;
+
+    --color: #6994BC;
+    --background: #3D0461;
+}
+
+//quadrado de texto 4
+.company-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0px;
+
+    --color: #6994BC;
+    --background: #5B0591;
+}
+
+//quadrado de texto 5
+.franchise-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0px;
+
+    --color: #6994BC;
+    --background: #5B0591;
+}
+
+//N/A
+.rating-card-style{
+    text-align: center;
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 14px;
+    
+    --color: #FFFFFF;
+    --background: #A58A35;
+}
+
+//negócio de data embaixo do N/A
+.date-card-style{
+    text-align: center;
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 14px;
+
+    --color: #FFFFFF;
+    --background: #470B03;
+}
+
+//Age Ratings
+.agerating-card-style{
+    text-align: center;
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 14px;
+
+    --color: #FFFFFF;
+    --background: #6f4805;
+}
+
+//verdinho da direita com um + no meio
+.add-game-button-style{
+    --background: #0D9132;
+}
+
+//vermelho da direita (embaixo do verde)
+.warning-card-style{
+    --background: #8F1705;
+    width: 30px;
+}
+
+.title-description-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 23px;
+    margin: 0px;
+
+    --color: #FFFFFF;
+    --background: #00244b;
+}
+
+.description-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 16px;
+    margin: 0px;
+
+    --color: #86b5e4;
+    --background: #054991;
+}
+
+.description-section-margin{
+    margin-bottom: 15px;
+}
+
+.title-similar-games-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 23px;
+    margin: 0px;
+
+    --color: #FFFFFF;
+    --background: #1f004b;
+}
+
+.similar-name-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    height: 80px;
+
+    // align-items: center;
+    text-align: center;
+
+    --color: #c9c9c9;
+    --background: #1E0230;
+}
+
+.similar-name-text-style{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}
+
+.similar-games-section-margin{
+    margin-bottom: 100px;
+}
+
+.loading-style{
+    left: 47%;
+    top: 5px;
+}

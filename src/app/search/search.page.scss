@@ -1,0 +1,204 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap');
+
+.title {
+    font-family: "Londrina Solid", cursive;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.background{
+	--background: url('/assets/images/new/background.png')0 0/100% 100% no-repeat;
+}
+
+.header{
+	--background: rgb(78, 16, 116);
+    --color: white;
+}
+
+.game-item-style{
+    font-family: "Londrina Solid", cursive;
+    padding-left: 10px;
+}
+
+.cover-style{
+    width: 75px;
+    border-style: solid;
+    border-color: #4E1075;
+    border-width: 2px;
+}
+
+//quadrado de texto 1
+.name-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 18px;
+    margin: 0px;
+
+    --color: #FFFFFF;
+    --background: #1E0230;
+}
+
+//quadrado de texto 2
+.genre-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 12px;
+    margin: 0px;
+
+    --color: #6994BC;
+    --background: #3D0461;
+}
+
+//quadrado de texto 3
+.platform-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 12px;
+    margin: 0px;
+
+    --color: #6994BC;
+    --background: #3D0461;
+}
+
+//quadrado de texto 4
+.company-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 12px;
+    margin: 0px;
+
+    --color: #6994BC;
+    --background: #5B0591;
+}
+
+//quadrado de texto 5
+.franchise-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 12px;
+    margin: 0px;
+
+    --color: #6994BC;
+    --background: #5B0591;
+}
+
+//N/A
+.rating-badge-style{
+    --color: #FFFFFF;
+    --background: #A58A35;
+}
+
+//negócio de data embaixo do N/A
+.date-card-style{
+    text-align: center;
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 14px;
+
+    --color: #FFFFFF;
+    --background: #470B03;
+}
+
+//verdinho da direita com um + no meio
+.add-game-button-style{
+    --background: #0D9132;
+}
+
+//vermelho da direita (embaixo do verde)
+.warning-card-style{
+    --background: #8F1705;
+    width: 30px;
+}
+
+.loading-style{
+    left: 47%;
+    top: 5px;
+}
+
+.load-more-button-style{
+    font-family: "Londrina Solid", cursive;
+    font-size: 15px;
+    --background: #e640cd20;
+    --color: #8b93ed;
+}
+
+.warning-item-style{
+    --background: #6c1313;
+}
+
+.warning-label-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 20px;
+    text-align: center;
+    --color: #d0cdcd;
+}
+
+.search-by-name-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 19px;
+    --color: #ddb7ff;
+}
+
+.search-button-style{
+	--background: rgb(78, 16, 116);
+}
+
+.menu-background-style{
+    --background: rgb(15, 3, 26);
+}
+
+.menu-item-home-style{
+    --background: rgb(47, 7, 84);
+    margin-top: 10px;
+}
+
+.menu-item-filter-style{
+    --background: rgb(47, 7, 84);
+}
+
+.menu-icon-style{
+    color: #FFFFFF;
+    size: 30px;
+}
+
+.menu-label_style{
+    font-family: "Londrina Solid", cursive;
+    font-size: 25px;
+
+    --color: #FFFFFF;
+}
+
+.filter-item-style{
+    --background: rgb(104, 25, 177);
+}
+
+.filter-label-style{
+    font-family: "Londrina Solid", cursive;
+    font-size: 18px;
+
+    --color: #FFFFFF;
+}
+
+.reset-filter-style{
+    --background: #eb6c5876; 
+}
+
+.page-number-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    height: 40px;
+    text-align: center;
+}
+
+.page-number-text-style{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

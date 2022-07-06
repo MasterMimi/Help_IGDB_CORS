@@ -1,0 +1,174 @@
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap");
+
+.title {
+    font-family: "Londrina Solid", cursive;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.background{
+	--background: url('/assets/images/new/background.png')0 0/100% 100% no-repeat;
+}
+
+.header{
+	--background: rgb(78, 16, 116);
+    --color: white;
+}
+
+.name-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 15px;
+    margin: auto;
+
+    --color: #6994BC;
+    --background: #3D0461;
+}
+
+.cover-style{
+    width: 90px;
+    border-style: solid;
+    border-color: #4E1075;
+    border-width: 2px;
+    margin: auto
+}
+
+.green-card-style{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    padding: 5px;
+    
+    --background: #1b9a3980;
+}
+
+.yellow-card-style{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    padding: 5px;
+    
+    --background: #e1e42b4c;
+}
+
+.green-card-input-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 15px;
+    
+    --color: #003a0e;
+    color: #003a0e;
+}
+
+.yellow-card-input-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 15px;
+    
+    --color: #383a00;
+    color: #383a00;
+}
+
+.no-results-card-style{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    padding: 5px;
+    
+    --background: #e42b2b7f;
+}
+
+.no-results-input-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 15px;
+    
+    --color: #3a0000;
+    color: #3a0000;
+}
+
+.add-stage-button-style{
+    --background: rgb(47, 7, 84);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 42%;
+    margin-right: 42%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    font-family: 'Londrina Solid', cursive; 
+    font-size: 20px;
+}
+
+.search-by-name-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 19px;
+    --color: #ddb7ff;
+}
+
+.segment-label-style{
+    font-family: "Londrina Solid", cursive;
+	font-size: 12px;
+	display: flex;
+	align-items: center;
+	text-align: center;
+}
+
+ion-segment-button{
+    --color-checked: #e7ff14;
+}
+
+.delete-stage-button-style{
+    --background: rgba(87, 32, 32, 0.75);
+    --color: #cde3ef92;
+}
+
+.textarea-card-style{
+    --background: #dc0fa56c;
+}
+
+.textarea-input-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 15px;
+    color: #3D0461;
+}
+
+.history-card-style{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    padding: 5px;
+    
+    --background: #161616b0;
+}
+
+.history-text-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 15px;
+    
+    color: #c8c8c896;
+}
+
+.page-number-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    height: 40px;
+    text-align: center;
+}
+
+.page-number-text-style{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

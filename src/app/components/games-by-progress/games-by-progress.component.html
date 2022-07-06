@@ -1,0 +1,102 @@
+<ion-header>
+	<ion-toolbar class="header">
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref="home" (click)="gameplaysService.returnFromGameplaysPage()"></ion-back-button>
+		</ion-buttons>
+		<ion-title class="title">
+			Meus jogos
+			<ion-button (click)="gameplaysService.importPlays()" fill="clear" shape="round" style="margin-left: 25px; position: relative; ">
+				<ion-icon slot="icon-only" name="download" style="color: green;"></ion-icon>
+			</ion-button>
+			<ion-button (click)="gameplaysService.exportPlays()"  fill="clear" shape="round">
+				<ion-icon slot="icon-only" name="share" style="color: orange;"></ion-icon>
+			</ion-button>
+		</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+	<ion-item color="none">
+		<ion-input [(ngModel)]="gameplaysService.gameplayTextInput" (ngModelChange)="gameplaysService.searchGameplayByTextInput()" placeholder="Buscar por nome" type="text" class="search-by-name-style">
+		</ion-input>
+	</ion-item>
+	<ion-item color="none" *ngFor="let gameplayGame of gameplaysService.renderedBuildGameplaysToShowMap.get(gameplaysService.progressName).get(gameplaysService.currentPage)">
+		<ion-grid fixed>
+			<ion-row>
+				<ion-col size="10" (click)="redirectToChosenPlay(gameplayGame)">
+					<ion-card class="gameplay-name-card-style">
+						<ion-text>{{gameplayGame.name}}<br></ion-text>
+					</ion-card>
+				</ion-col>
+				<ion-col>
+					<ion-button (click)="gameplaysService.confirmGameDeletion(gameplayGame)" class="delete-game-button-style">
+						<ion-icon slot="icon-only" name="trash"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+			<ion-row>
+				<ion-col size="4" (click)="redirectToChosenPlay(gameplayGame)">
+					<ion-row>
+						<ion-col size="12">
+							<ion-card class="name-card-style">
+								<ion-text>{{gameplayGame.buildGameName}}<br></ion-text>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col size="12">
+							<ion-img [src]="gameplayGame.buildGameCoverURL" class="cover-style"></ion-img>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col size="12">
+							<ion-card class="date-card-style">
+								<ion-text>{{gameplayGame.addingDate}}<br></ion-text>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+				</ion-col>
+				<ion-col size="8">
+					<ion-row>
+						<ion-col size="12">
+							<ion-item class="status-list-style">
+								<ion-label class="status-list-style">Status</ion-label>
+								<ion-select class="status-list-style" [(ngModel)]="gameplayGame.status" (ngModelChange)="gameplaysService.confirmGameStatusChange(gameplayGame)" multiple="false">
+									<ion-select-option class="status-list-label-style" *ngFor="let option of gameplaysService.GameplayStageStatusOptions" [value]=option>{{option}}</ion-select-option>
+								</ion-select>
+							</ion-item>
+							<ion-item color="none" style="margin-bottom: 10px;" (click)="redirectToChosenPlay(gameplayGame)"></ion-item>
+							<ion-item class="game-info-style" (click)="gameplaysService.redirectToGameDetails(gameplayGame.buildGameId, true)">
+								<ion-icon name="information-circle" slot="start"></ion-icon>
+								<ion-label class="game-info-style">Info do jogo</ion-label>
+							</ion-item>
+						</ion-col>
+					</ion-row>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-item>
+	
+	<ion-grid fixed slot="fixed" style="background-color: rgb(78, 16, 116); position: absolute; bottom: 50px;">
+		<ion-row>
+			<ion-col size="2"></ion-col>
+			<ion-col size="2">
+				<ion-button (click)="gameplaysService.backPage()" style="--background: rgb(11, 2, 19, 0);">
+					<ion-icon slot="icon-only" name="arrow-back-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="4">
+				<ion-card color="none" class="page-number-card-style">
+					<ion-label class="page-number-text-style">Página {{gameplaysService.currentPage}}</ion-label>
+				</ion-card>
+			</ion-col>
+			<ion-col size="2">
+				<ion-button (click)="gameplaysService.forwardPage('Gameplays')" style="--background: rgb(11, 2, 19, 0);">
+					<ion-icon slot="icon-only" name="arrow-forward-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="2"></ion-col>
+		</ion-row>
+	</ion-grid>
+	<div style="margin-bottom: 130px;"></div>
+</ion-content>

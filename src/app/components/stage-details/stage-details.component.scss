@@ -1,0 +1,120 @@
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap");
+
+.title {
+    font-family: "Londrina Solid", cursive;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.background{
+	--background: url('/assets/images/new/background.png')0 0/100% 100% no-repeat;
+}
+
+.header{
+	--background: rgb(78, 16, 116);
+    --color: white;
+}
+
+.green-card-style{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    padding: 5px;
+    
+    --background: #1b9a3980;
+}
+
+.green-info-style{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    margin-bottom: 30px;
+
+    padding: 5px;
+    text-align: center;
+    
+    --background: #1b9a39bd;
+}
+
+.green-card-input-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 20px;
+    
+    --color: #003a0e;
+    color: #003a0e;
+}
+
+.green-status-list-style{
+    margin-left: 10%;
+    margin-right: 10%;
+
+    --background: #1b9a3980;
+}
+
+.green-status-list-label-style{
+    font-family: "Londrina Solid", cursive;
+    font-size: 16px;
+    padding: 0px;
+    --color: #003a0e;
+}
+
+.yellow-card-style{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    padding: 5px;
+    
+    --background: #e1e42b4c;
+}
+
+.yellow-info-style{
+    margin-left: 10%;
+    margin-right: 10%;
+    margin-top: 15px;
+    margin-bottom: 30px;
+
+    padding: 5px;
+    text-align: center;
+    
+    --background: #d2af24bd;
+}
+
+.yellow-card-input-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 20px;
+    
+    --color: #383a00;
+    color: #383a00;
+}
+
+.yellow-status-list-style{
+    margin-left: 10%;
+    margin-right: 10%;
+
+    --background: #e1e42b4c;
+}
+
+.yellow-status-list-label-style{
+    font-family: "Londrina Solid", cursive;
+    font-size: 16px;
+    padding: 0px;
+    --color: #383a00;
+}
+
+.save-button-style{
+    --background: rgb(47, 7, 84);
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    margin-left: 30%;
+    margin-right: 30%;
+    margin-top: 15px;
+    margin-bottom: 15px;
+
+    font-family: 'Londrina Solid', cursive; 
+    font-size: 25px;
+}

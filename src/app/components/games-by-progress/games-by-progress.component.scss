@@ -1,0 +1,102 @@
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap");
+
+.title {
+    font-family: "Londrina Solid", cursive;
+    font-weight: bold;
+    font-size: 25px;
+    padding-top: 10px;
+}
+
+.background{
+	--background: url('/assets/images/new/background.png')0 0/100% 100% no-repeat;
+}
+
+.header{
+	--background: rgb(78, 16, 116);
+    --color: white;
+}
+
+.gameplay-name-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 20px;
+    margin: 0px;
+
+    --color: #FFFFFF;
+    --background: #1E0230;
+}
+
+.name-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 400;
+    font-size: 15px;
+    margin: 0px;
+
+    --color: #6994BC;
+    --background: #3D0461;
+}
+
+.cover-style{
+    width: 90px;
+    border-style: solid;
+    border-color: #4E1075;
+    border-width: 2px;
+}
+
+.date-card-style{
+    text-align: left;
+    font-family: "Londrina Solid", cursive;
+    font-weight: 500;
+    font-size: 14px;
+
+    --color: #FFFFFF;
+    --background: #68180e;
+}
+
+.status-list-style{
+    --background: #3d046146;
+    font-family: "Londrina Solid", cursive;
+    font-size: 16px;
+    padding: 0px;
+    --color: rgba(221, 221, 221, 0.756);
+}
+
+
+.delete-game-button-style{
+    --background: rgb(87, 32, 32);
+    --color: #cde3ef;
+}
+
+
+.game-info-style{
+    --background: #04136146;
+    font-family: "Londrina Solid", cursive;
+    font-size: 16px;
+    padding: 0px;
+    --color: rgba(221, 221, 221, 0.756);
+}
+
+.search-by-name-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 19px;
+    --color: #ddb7ff;
+}
+
+.page-number-card-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 16px;
+    margin: 0px;
+    padding: 0px;
+    height: 40px;
+    text-align: center;
+}
+
+.page-number-text-style{
+    margin: 0;
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+}

@@ -1,0 +1,193 @@
+<ion-header>
+	<ion-toolbar class="header">
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref='search'></ion-back-button>
+		</ion-buttons>
+		<ion-title class="title">Aplicar filtro - {{filter_name}}</ion-title>
+		
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="background" *ngIf="filtersService.isFilterWordList(filter_name)">
+	<ion-grid fixed>
+		<ion-row>
+			<ion-col size="2">
+				<ion-button (click)="filtersService.resetFilter(filter_name, false)" class="reset-filter-style">
+					<ion-icon slot="start" name="close"></ion-icon>
+					Eliminar filtro
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-item color="none">
+		<ion-grid fixed>
+			<ion-row>
+				<ion-col size="10">
+					<ion-input (keyup.enter)="filtersService.search(filter_name)" [(ngModel)]="filtersService.searchValue" (ngModelChange)="filtersService.resetNotFoundAlert()" placeholder="Buscar por nome" type="text" class="search-by-name-style">
+					</ion-input>
+				</ion-col>
+				<ion-col size="2">
+					<ion-button (click)="filtersService.search(filter_name)" class="search-button-style">
+						<ion-icon slot="icon-only" name="search"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-item>
+
+	<ion-item class="warning-item-style" *ngIf="(filtersService.searchValue == null || filtersService.searchValue == '') && filter_name != filters.Generos">
+		<ion-label class="warning-label-style">
+			Comece digitando o valor do filtro desejado
+		</ion-label>
+	</ion-item>
+	<ion-item class="warning-item-style" *ngIf="!filtersService.hasFoundValue">
+		<ion-label class="warning-label-style">Nenhum resultado encontrado!</ion-label>
+	</ion-item>
+
+	<ion-item color="none" style="margin-top: 10px;">
+		<ion-grid fixed>
+			<ion-row>
+				<ion-col size="6">
+					<ion-item class="include-null-values-style">
+						Incluir valores nulos?
+						<ion-checkbox slot="start" [(ngModel)]="filtersService.includeNullValues"></ion-checkbox>
+					</ion-item>
+				</ion-col>
+				<ion-col size="6">
+					<ion-radio-group name="auto" [(ngModel)]="filtersService.filterOperator">
+						<ion-item class="and-or-filter-item-style">
+							<ion-radio value="and"></ion-radio>
+							<ion-label class="and-or-filter-label-style">filtro1 &nbsp; E &nbsp; filtro2</ion-label>
+						</ion-item>
+						<ion-item class="and-or-filter-item-style">
+							<ion-radio value="or"></ion-radio>
+							<ion-label class="and-or-filter-label-style">filtro1 &nbsp; OU &nbsp; filtro2</ion-label>
+						</ion-item>
+					</ion-radio-group>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-item>
+	<ion-button (click)="filtersService.searchGames(filter_name)" expand="block" shape="round" class="search-games-button-style" *ngIf="filtersService.filteredOptions.length != 0 || filtersService.includeNullValues">
+		Pesquisar
+	</ion-button>
+
+	<ion-item color="none" *ngFor="let item of this.filtersService.filteredOptions">
+		<ion-label class="filter-label-style">{{item.name}}</ion-label>
+		<ion-checkbox slot="start" [(ngModel)]="item.selected"></ion-checkbox>
+	</ion-item>
+</ion-content>
+
+<ion-content class="background" *ngIf="filtersService.isFilterNumberRange(filter_name)">
+	<ion-grid fixed>
+		<ion-row>
+			<ion-col size="2">
+				<ion-button (click)="filtersService.resetFilter(filter_name, false)" class="reset-filter-style">
+					<ion-icon slot="start" name="close"></ion-icon>
+					Eliminar filtro
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	
+	<ion-item color="none">
+		<ion-grid fixed>
+			<ion-row>
+				<ion-col size="12">
+					<ion-item class="include-null-values-style">
+						Incluir jogos sem nota?
+						<ion-checkbox slot="start" [(ngModel)]="filtersService.includeNullValues"></ion-checkbox>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-item>
+
+	<ion-item color="none">
+		<ion-grid fixed>
+			<ion-row>
+				<ion-col size="6">
+					<ion-item class="minimum-item-style">
+						<ion-label position="fixed" class="rating-input-label-style">Mínimo</ion-label>
+						<ion-input type="number" class="rating-input-value-style" [(ngModel)]="filtersService.minimumRating" (ngModelChange)="filtersService.validateRatingInput()"></ion-input>
+					</ion-item>
+				</ion-col>
+				<ion-col size="6">
+					<ion-item class="maximum-item-style">
+						<ion-label position="fixed" class="rating-input-label-style">Máximo</ion-label>
+						<ion-input type="number" class="rating-input-value-style" [(ngModel)]="filtersService.maximumRating" (ngModelChange)="filtersService.validateRatingInput()"></ion-input>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-item>
+	<ion-item class="warning-item-style" *ngIf="!filtersService.isRatingInputValid">
+		<ion-label class="warning-label-style">{{filtersService.ratingFilterErrorMessage}}</ion-label>
+	</ion-item>
+	<ion-button (click)="filtersService.searchGames(filter_name)" expand="block" shape="round" class="search-games-button-style">
+		Pesquisar
+	</ion-button>
+</ion-content>
+
+<ion-content class="background" *ngIf="filtersService.isFilterDate(filter_name)">
+	<ion-grid fixed>
+		<ion-row>
+			<ion-col size="2">
+				<ion-button (click)="filtersService.resetFilter(filter_name, false)" class="reset-filter-style">
+					<ion-icon slot="start" name="close"></ion-icon>
+					Eliminar filtro
+				</ion-button>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+	
+	<ion-item color="none">
+		<ion-grid fixed>
+			<ion-row>
+				<ion-col size="12">
+					<ion-item class="include-null-values-style">
+						Incluir jogos sem data?
+						<ion-checkbox slot="start" [(ngModel)]="filtersService.includeNullValues"></ion-checkbox>
+					</ion-item>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-item>
+
+	<ion-item color="none">
+		<ion-grid fixed>
+			<ion-label class="date-label-style">Data mínima</ion-label>
+			<ion-row>
+				<ion-col size="3">
+					<ion-input type="number" class="minimum-date-input-style" placeholder="Dia" [(ngModel)]="filtersService.minimumDay" (ngModelChange)="filtersService.validateMinimumDateInput()"></ion-input>
+				</ion-col>
+				<ion-col size="3">
+					<ion-input type="number" class="minimum-date-input-style" placeholder="Mês" [(ngModel)]="filtersService.minimumMonth" (ngModelChange)="filtersService.validateMinimumDateInput()"></ion-input>
+				</ion-col>
+				<ion-col size="3">
+					<ion-input type="number" class="minimum-date-input-style" placeholder="Ano" [(ngModel)]="filtersService.minimumYear" (ngModelChange)="filtersService.validateMinimumDateInput()"></ion-input>
+				</ion-col>
+			</ion-row>
+
+			<ion-label class="date-label-style">Data máxima</ion-label>
+			<ion-row>
+				<ion-col size="3">
+					<ion-input type="number" class="maximum-date-input-style" placeholder="Dia" [(ngModel)]="filtersService.maximumDay" (ngModelChange)="filtersService.validateMaximumDateInput()"></ion-input>
+				</ion-col>
+				<ion-col size="3">
+					<ion-input type="number" class="maximum-date-input-style" placeholder="Mês" [(ngModel)]="filtersService.maximumMonth" (ngModelChange)="filtersService.validateMinimumDateInput()"></ion-input>
+				</ion-col>
+				<ion-col size="3">
+					<ion-input type="number" class="maximum-date-input-style" placeholder="Ano" [(ngModel)]="filtersService.maximumYear" (ngModelChange)="filtersService.validateMinimumDateInput()"></ion-input>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-item>
+	<ion-button (click)="filtersService.searchGames(filter_name)" expand="block" shape="round" class="search-games-button-style">
+		Pesquisar
+	</ion-button>
+	<ion-item class="warning-item-style" *ngIf="!filtersService.isDateInputValid">
+		<ion-label class="warning-label-style">{{filtersService.dateFilterErrorMessage}}</ion-label>
+	</ion-item>
+</ion-content>

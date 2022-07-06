@@ -1,0 +1,13 @@
+{
+    "name": "Let's Play",
+    "integrations": {
+        "capacitor": {}
+    },
+    "type": "angular",
+    "proxies": [
+        {
+            "path": "*/api",
+            "proxyUrl": "https://api.igdb.com"
+        }
+    ]
+}

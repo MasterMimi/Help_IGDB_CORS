@@ -1,0 +1,25 @@
+@import url("https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap");
+
+.tab-icon-style{
+    height: 23px;
+}
+
+.tab-bar-style{
+	--background: rgb(78, 16, 116);
+}
+
+.tab-button-selected-style{
+    font-family: "Londrina Solid", cursive;
+    font-size: 15px;
+
+	--background: rgb(78, 16, 116);
+    --color: #c6c258;
+}
+
+.tab-button-unselected-style{
+    font-family: "Londrina Solid", cursive;
+    font-size: 15px;
+
+	--background: rgb(78, 16, 116);
+    --color: #9882c7;
+}

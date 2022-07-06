@@ -1,0 +1,32 @@
+<ion-tabs>
+	<ion-tab-bar class="tab-bar-style" slot="bottom">
+		<ion-tab-button
+				[class]="gameplaysService.isTabSelected('Na lista', gameplaysService.progressName) ? 'tab-button-selected-style' : 'tab-button-unselected-style'" 
+				(click)="gameplaysService.loadProgressGames('Na lista')"
+		>
+			<ion-img class="tab-icon-style" src="./assets/images/gameplays-na-lista.png"></ion-img>
+			<ion-label class="tab_font">Na lista</ion-label>
+		</ion-tab-button>
+		<ion-tab-button
+				[class]="gameplaysService.isTabSelected('Pausado', gameplaysService.progressName) ? 'tab-button-selected-style' : 'tab-button-unselected-style'" 
+				(click)="gameplaysService.loadProgressGames('Pausado')"
+		>
+			<ion-img class="tab-icon-style" src="./assets/images/gameplays-pausado.png"></ion-img>
+			<ion-label class="tab_font">Pausado</ion-label>
+		</ion-tab-button>
+		<ion-tab-button
+				[class]="gameplaysService.isTabSelected('Jogando', gameplaysService.progressName) ? 'tab-button-selected-style' : 'tab-button-unselected-style'" 
+				(click)="gameplaysService.loadProgressGames('Jogando')"
+		>
+			<ion-img class="tab-icon-style" src="./assets/images/gameplays-jogando.png"></ion-img>
+			<ion-label class="tab_font">Jogando</ion-label>
+		</ion-tab-button>
+		<ion-tab-button
+				[class]="gameplaysService.isTabSelected('Concluído', gameplaysService.progressName) ? 'tab-button-selected-style' : 'tab-button-unselected-style'" 
+				(click)="gameplaysService.loadProgressGames('Concluído')"
+		>
+			<ion-img class="tab-icon-style" src="./assets/images/gameplays-concluido.png"></ion-img>
+			<ion-label class="tab_font">Concluído</ion-label>
+		</ion-tab-button>
+	</ion-tab-bar>
+</ion-tabs>

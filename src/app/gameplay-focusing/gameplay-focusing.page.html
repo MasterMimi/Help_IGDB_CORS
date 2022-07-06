@@ -1,0 +1,25 @@
+<ion-tabs>
+	<ion-tab-bar class="tab-bar-style" slot="bottom">
+		<ion-tab-button
+				[class]="gameplaysService.isTabSelected('Notas', gameplaysService.playEditOption) ? 'tab-button-selected-style' : 'tab-button-unselected-style'" 
+				(click)="gameplaysService.loadPlayOption('Notas')"
+		>
+			<ion-img class="tab-icon-style" src="./assets/images/plays-notas.png"></ion-img>
+			<ion-label class="tab_font">Notas</ion-label>
+		</ion-tab-button>
+		<ion-tab-button
+				[class]="gameplaysService.isTabSelected('Fases', gameplaysService.playEditOption) ? 'tab-button-selected-style' : 'tab-button-unselected-style'" 
+				(click)="gameplaysService.loadPlayOption('Fases')"
+		>
+			<ion-img class="tab-icon-style" src="./assets/images/plays-fases.png"></ion-img>
+			<ion-label class="tab_font">Fases</ion-label>
+		</ion-tab-button>
+		<ion-tab-button
+				[class]="gameplaysService.isTabSelected('Histórico', gameplaysService.playEditOption) ? 'tab-button-selected-style' : 'tab-button-unselected-style'" 
+				(click)="gameplaysService.loadPlayOption('Histórico')"
+		>
+			<ion-img class="tab-icon-style" src="./assets/images/plays-historico.png"></ion-img>
+			<ion-label class="tab_font">Histórico</ion-label>
+		</ion-tab-button>
+	</ion-tab-bar>
+</ion-tabs>

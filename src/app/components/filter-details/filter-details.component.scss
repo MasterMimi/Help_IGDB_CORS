@@ -1,0 +1,122 @@
+@import url('https://fonts.googleapis.com/css2?family=Londrina+Solid&display=swap');
+
+.title {
+    font-family: "Londrina Solid", cursive;
+    font-weight: bold;
+    font-size: 25px;
+}
+
+.background{
+	--background: url('/assets/images/new/background.png')0 0/100% 100% no-repeat;
+}
+
+.header{
+	--background: rgb(78, 16, 116);
+    --color: white;
+}
+
+.reset-filter-style{
+    --background: #ff4d0076; 
+}
+
+.search-by-name-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 19px;
+    --color: #ddb7ff;
+}
+
+.search-button-style{
+	--background: rgb(78, 16, 116);
+}
+
+.filter-label-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 16px;
+    --color: #ffffff;
+}
+
+.warning-item-style{
+    --background: #6c1313cd;
+}
+
+.warning-label-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 14px;
+    text-align: center;
+    --color: #d0cdcd;
+}
+
+.search-games-button-style{
+    --background: #5555554c;
+}
+
+.include-null-values-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 15px;
+    text-align: center;
+    --color: #d0cdcd;
+    --background: #a5a0e11d;
+}
+
+.and-or-filter-item-style{
+    --color: #d0cdcd;
+    --background: #a5a0e11d;
+}
+
+.and-or-filter-label-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 100;
+    font-size: 14px;
+    text-align: center;
+}
+
+.minimum-item-style{
+    --background: #1037d33e;
+}
+
+.maximum-item-style{
+    --background: #e139133e;
+}
+
+.rating-input-label-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 200;
+    font-size: 25px;
+    --color: #888888;
+}
+.rating-input-value-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 50;
+    font-size: 21px;
+
+    --color: #FFFFFF;
+}
+
+.date-label-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 50;
+    font-size: 21px;
+    --color: #eecbf2;
+}
+
+.minimum-date-input-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 50;
+    font-size: 21px;
+
+    --background: #1037d33e;
+    --color: #FFFFFF;
+}
+
+.maximum-date-input-style{
+    font-family: "Londrina Solid", cursive;
+    font-weight: 50;
+    font-size: 21px;
+
+    --background: #e139133e;
+    --color: #FFFFFF;
+}

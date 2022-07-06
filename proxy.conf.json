@@ -1,0 +1,19 @@
+{
+    "*/v4/*": {
+        "target": "https://api.igdb.com/v4",
+        "secure": true,
+        "changeOrigin": true
+    },
+
+    "/v1/*": {
+        "target": "https://api.thecatapi.com",
+        "secure": true,
+        "changeOrigin": true
+    },
+    "/api/*":{
+        "target": "http://localhost:8101",
+        "secure": false,
+        "logLevel": "debug",
+        "changeOrigin": true
+    }
+}

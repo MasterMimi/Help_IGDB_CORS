@@ -1,0 +1,188 @@
+<ion-menu contentId="menu-content" menuId="main-menu" side="start" type="overlay">
+	<ion-content class="menu-background-style">
+		<ion-item routerLink='/home' class="menu-item-home-style">
+			<ion-icon slot="start" name="home" class="menu-icon-style"></ion-icon>
+			<ion-label class="menu-label_style">Home</ion-label>
+		</ion-item>
+
+		<ion-item style="--background: rgb(255, 255, 255); height: 3px;">
+		</ion-item>
+
+		<ion-item routerLink='/gameplays/playing-games' (click)="gameplaysService.setComingFromSearch(true)" class="menu-item-filter-style" style="margin-top: 0px;">
+			<ion-icon slot="start" name="game-controller" class="menu-icon-style"></ion-icon>
+			<ion-label class="menu-label_style">Jogatinas</ion-label>
+		</ion-item>
+
+		<ion-item style="--background: rgb(255, 255, 255); height: 3px;">
+		</ion-item>
+
+		<ion-accordion-group>
+			<ion-accordion value="filters">
+				<ion-item slot="header" class="menu-item-filter-style">
+					<ion-icon slot="start" name="funnel" class="menu-icon-style"></ion-icon>
+					<ion-label class="menu-label_style">Filtros</ion-label>
+				</ion-item>
+
+				<ion-list slot="content" style="background-color: rgb(11, 2, 19);">
+					<ion-row *ngFor="let filter of filtersEnum | keyvalue: originalOrder">
+						<ion-col size="9" (click)="changeCurrentFilter(filter.value)">
+							<ion-item class="filter-item-style">
+								<ion-label class="filter-label-style">{{filter.value}}</ion-label>
+							</ion-item>
+						</ion-col>
+						<ion-col size="2" *ngIf="filtersService.isChosenFilterBeingUsed(filter.value)">
+							<ion-button (click)="filtersService.resetFilter(filter.value, false)" class="reset-filter-style">
+								<ion-icon slot="icon-only" name="close"></ion-icon>
+							</ion-button>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col size="12">
+							<ion-button (click)="filtersService.resetAllFilters()" class="reset-filter-style">
+								<ion-icon slot="start" name="close"></ion-icon>
+								Redefinir
+							</ion-button>
+						</ion-col>
+					</ion-row>
+				</ion-list>
+			</ion-accordion>
+		</ion-accordion-group>
+	</ion-content>
+</ion-menu>
+<ion-router-outlet id="menu-content"></ion-router-outlet>
+
+<ion-header>
+	<ion-toolbar class="header">
+		<ion-buttons slot="start">
+			<ion-menu-button menu="main-menu"></ion-menu-button>
+		</ion-buttons>
+		<ion-title class="title">Procure um jogo</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+	<ion-item color="none">
+		<ion-grid fixed>
+			<ion-row>
+				<ion-col size="10">
+					<ion-input (keyup.enter)="searchByName()" [(ngModel)]="this.databaseService.inputName" placeholder="Buscar por nome" type="text" class="search-by-name-style">
+					</ion-input>
+				</ion-col>
+				<ion-col size="2">
+					<ion-button (click)="searchByName()" class="search-button-style">
+						<ion-icon slot="icon-only" name="search"></ion-icon>
+					</ion-button>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-item>
+
+	<ion-item color="none" class="game-item-style" *ngFor="let gameAPI of this.databaseService.buildGamesToShowMap.get(this.databaseService.currentPage)">
+		<ion-grid fixed>
+			<ion-row>
+				<ion-col size="4" (click)="gameplaysService.redirectToGameDetails(gameAPI.gameId, false)">
+					<ion-row>
+						<ion-col size="12">
+							<ion-img [src]="gameAPI.coverURL" class="cover-style"></ion-img>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col size="12">
+							<ion-badge class="rating-badge-style" mode="ios" *ngIf="gameAPI.rating != null">{{gameAPI.rating}}</ion-badge>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col size="12">
+							<ion-card class="date-card-style">
+								<ion-text>{{gameAPI.releaseDateFormatted}}<br></ion-text>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+				</ion-col>
+				<ion-col size="5" (click)="gameplaysService.redirectToGameDetails(gameAPI.gameId, false)">
+					<ion-row>
+						<ion-col size="12">
+							<ion-card class="name-card-style">
+								<ion-text>{{gameAPI.gameName}} <br></ion-text>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col size="12">
+							<ion-card class="genre-card-style">
+								<ion-text *ngFor="let genre of gameAPI.genreNames">> {{genre}}<br></ion-text>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col size="12">
+							<ion-card class="platform-card-style">
+								<ion-text *ngFor="let platform of gameAPI.platforms">* {{platform}}<br></ion-text>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col size="12">
+							<ion-card class="company-card-style">
+								<ion-text *ngFor="let company of gameAPI.companies">- {{company}}<br></ion-text>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+					<ion-row>
+						<ion-col size="12">
+							<ion-card class="franchise-card-style">
+								<ion-text *ngFor="let franchise of gameAPI.franchises">~ {{franchise}}<br></ion-text>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+				</ion-col>
+				<ion-col size="3">
+					<ion-row>
+						<ion-col size="12">
+							<ion-button (click)="this.gameplaysService.confirmGameAdding(gameAPI)" class="add-game-button-style">
+								<ion-icon slot="icon-only" name="add"></ion-icon>
+							</ion-button>
+						</ion-col>
+					</ion-row>
+					<ion-row *ngIf="this.gameplaysService.isGameAlreadyAdded(gameAPI.gameId)">
+						<ion-col size="12">
+							<ion-card class="warning-card-style">
+								<ion-text>
+									<ion-img src="./assets/images/warning.png"></ion-img>
+								</ion-text>
+							</ion-card>
+						</ion-col>
+					</ion-row>
+				</ion-col>
+			</ion-row>
+		</ion-grid>
+	</ion-item>
+
+	<ion-spinner *ngIf="databaseService.loadingGames" name="bubbles" class="loading-style"></ion-spinner>
+	<ion-item class="warning-item-style" *ngIf="!databaseService.hasFoundGames">
+		<ion-label class="warning-label-style">Nenhum resultado encontrado!</ion-label>
+	</ion-item>
+
+	<div style="margin-bottom: 70px;"></div>
+	<ion-grid fixed slot="fixed" style="background-color: rgb(78, 16, 116); position: absolute; bottom: 0px;">
+		<ion-row>
+			<ion-col size="2"></ion-col>
+			<ion-col size="2">
+				<ion-button (click)="databaseService.backPage()" style="--background: rgb(11, 2, 19, 0);">
+					<ion-icon slot="icon-only" name="arrow-back-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="4">
+				<ion-card color="none" class="page-number-card-style">
+					<ion-label class="page-number-text-style">Página {{databaseService.currentPage}}</ion-label>
+				</ion-card>
+			</ion-col>
+			<ion-col size="2">
+				<ion-button (click)="databaseService.forwardPage()" style="--background: rgb(11, 2, 19, 0);">
+					<ion-icon slot="icon-only" name="arrow-forward-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="2"></ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content>

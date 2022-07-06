@@ -1,0 +1,44 @@
+<ion-header>
+	<ion-toolbar class="header">
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref='home'></ion-back-button>
+		</ion-buttons>
+		<ion-title class="title">Stage - {{stageToShow.id}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+	<ion-card [ngClass]="this.styleColor + '-info-style'">
+		<ion-text [ngClass]="this.styleColor + '-card-input-style'">Edite os dados desta fase conforme precisar!</ion-text>
+	</ion-card>
+
+	<ion-card [ngClass]="this.styleColor + '-card-style'" >
+		<ion-textarea autoGrow="true" type="text" placeholder="Nome" [(ngModel)]="insertedName" [ngClass]="this.styleColor + '-card-input-style'" maxlength="50"></ion-textarea>
+	</ion-card>
+
+	<ion-card [ngClass]="this.styleColor + '-card-style'">
+		<ion-textarea autoGrow="true" placeholder="Descrição" [(ngModel)]="insertedDescription" [ngClass]="this.styleColor + '-card-input-style'" style="font-size: 18px;"></ion-textarea>
+	</ion-card>
+
+	<ion-radio-group color="none" style="padding: 0px;" name="status" 
+		[(ngModel)]="stageToShow.status" 
+		(ngModelChange)="gameplaysService.confirmStageStatusChange(stageToShow)">
+		<ion-item *ngFor="let option of gameplaysService.stageStatusOptions" [ngClass]="this.styleColor + '-status-list-style'">
+			<ion-label [ngClass]="this.styleColor + '-status-list-label-style'">{{option}}</ion-label>
+			<ion-radio value={{option}} [disabled]="stageToShow.status == option"></ion-radio>
+		</ion-item>
+	</ion-radio-group>
+
+	<ion-card [ngClass]="this.styleColor + '-card-style'">
+		<ion-text [ngClass]="this.styleColor + '-card-input-style'" style="font-size: 12px;">Criado em: {{stageToShow.createdDate}}</ion-text>
+	</ion-card>
+
+	<ion-card [ngClass]="this.styleColor + '-card-style'">
+		<ion-text [ngClass]="this.styleColor + '-card-input-style'" style="font-size: 12px;">Modificado em: {{stageToShow.lastModifiedDate}}</ion-text>
+	</ion-card>
+
+	<ion-button (click)="saveStage()" [disabled]="!areInputsDifferent()" class='save-button-style'>
+		<ion-icon slot="start" name="save"></ion-icon>
+		&nbsp;&nbsp;Salvar
+	</ion-button>
+</ion-content>

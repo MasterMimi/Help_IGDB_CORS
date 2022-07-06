@@ -1,0 +1,137 @@
+<ion-header>
+	<ion-toolbar class="header">
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref='gameplays/playing-games'></ion-back-button>
+		</ion-buttons>
+		<ion-title class="title">{{gameplayToShow.name}}</ion-title>
+	</ion-toolbar>
+</ion-header>
+
+<ion-content class="background">
+	<ion-grid fixed>
+		<ion-row>
+			<ion-col size="3"></ion-col>
+			<ion-col size="6">
+				<ion-row>
+					<ion-card class="name-card-style" style="margin: auto">
+						<ion-text>{{gameplayToShow.buildGameName}}<br></ion-text>
+					</ion-card>
+				</ion-row>
+				<ion-row>
+					<ion-img [src]="gameplayToShow.buildGameCoverURL" class="cover-style"></ion-img>
+				</ion-row>
+			</ion-col>
+			<ion-col size="3"></ion-col>
+		</ion-row>
+	</ion-grid>
+
+	<ion-grid *ngIf="gameplaysService.isTabSelected('Notas', gameplaysService.playEditOption)">
+		<ion-card class='textarea-card-style'>
+			<ion-textarea autoGrow="true" [(ngModel)]="gameplayToShow.notes" (ngModelChange)="gameplaysService.updateGameplays()" class='textarea-input-style'></ion-textarea>
+		</ion-card>
+	</ion-grid>
+
+	<ion-grid *ngIf="gameplaysService.isTabSelected('Fases', gameplaysService.playEditOption)">
+		<ion-button (click)="gameplaysService.enterNameDescription()" class="add-stage-button-style">
+			<ion-icon name="add-circle"></ion-icon>
+		</ion-button>
+		
+		<ion-item color="none">
+			<ion-input [(ngModel)]="gameplaysService.stageTextInput" (ngModelChange)="gameplaysService.searchStageByTextInput()" placeholder="Buscar por nome" type="text" class="search-by-name-style">
+			</ion-input>
+		</ion-item>
+
+		<ion-segment [(ngModel)]="gameplaysService.chosenStageStatus" (ngModelChange)="gameplaysService.applyStatusFilter()" >
+			<ion-segment-button value="Todos">
+				<ion-label class="segment-label-style">Todos</ion-label>
+			</ion-segment-button>
+			<ion-segment-button [value]=gameplaysService.statusOptions.EmProgresso>
+				<ion-label class="segment-label-style">{{gameplaysService.statusOptions.EmProgresso}}</ion-label>
+			</ion-segment-button>
+			<ion-segment-button [value]=gameplaysService.statusOptions.Pausado>
+				<ion-label class="segment-label-style">{{gameplaysService.statusOptions.Pausado}}</ion-label>
+			</ion-segment-button>
+			<ion-segment-button [value]=gameplaysService.statusOptions.Concluido>
+				<ion-label class="segment-label-style">{{gameplaysService.statusOptions.Concluido}}</ion-label>
+			</ion-segment-button>
+		</ion-segment>
+
+		<ion-card *ngIf="gameplaysService.loadedGameplayStages.length == 0" class='no-results-card-style'>
+			<ion-text class='no-results-input-style'>Sem resultados!</ion-text>
+		</ion-card>
+
+		<ion-card *ngFor="let stage of gameplaysService.buildStagesToShowMap.get(gameplaysService.chosenStageStatus).get(gameplaysService.currentPage)" [ngClass]="gameplaysService.getCardStyleNeeded(stage) + '-card-style'">
+			<ion-grid fixed>
+				<ion-row>
+					<ion-col size="10" (click)="gameplaysService.loadStage(stage)">
+						<ion-text [ngClass]="gameplaysService.getCardStyleNeeded(stage) + '-card-input-style'">Nº {{stage.id}}<br></ion-text>
+						<ion-text [ngClass]="gameplaysService.getCardStyleNeeded(stage) + '-card-input-style'">Nome: {{stage.name}}<br></ion-text>
+						<ion-text [ngClass]="gameplaysService.getCardStyleNeeded(stage) + '-card-input-style'">Descrição: {{stage.description}}<br></ion-text>
+						<ion-text [ngClass]="gameplaysService.getCardStyleNeeded(stage) + '-card-input-style'">Status: {{stage.status}}<br></ion-text>
+					</ion-col>
+					<ion-col size="2">
+						<ion-button size="small" (click)="gameplaysService.confirmStageDeletion(stage)" class="delete-stage-button-style">
+							<ion-icon size="small" slot="icon-only" name="trash" size="medium"></ion-icon>
+						</ion-button>
+					</ion-col>
+				</ion-row>
+			</ion-grid>
+		</ion-card>
+	</ion-grid>
+
+	<ion-grid 	*ngIf="gameplaysService.isTabSelected('Fases', gameplaysService.playEditOption)" 
+				fixed slot="fixed" style="background-color: rgb(78, 16, 116); position: absolute; bottom: 50px;">
+		<ion-row>
+			<ion-col size="2"></ion-col>
+			<ion-col size="2">
+				<ion-button (click)="gameplaysService.backPage()" style="--background: rgb(11, 2, 19, 0);">
+					<ion-icon slot="icon-only" name="arrow-back-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="4">
+				<ion-card color="none" class="page-number-card-style">
+					<ion-label class="page-number-text-style">Página {{gameplaysService.currentPage}}</ion-label>
+				</ion-card>
+			</ion-col>
+			<ion-col size="2">
+				<ion-button (click)="gameplaysService.forwardPage('Stages')" style="--background: rgb(11, 2, 19, 0);">
+					<ion-icon slot="icon-only" name="arrow-forward-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="2"></ion-col>
+		</ion-row>
+	</ion-grid>
+	<div style="margin-bottom: 130px;"></div>
+
+	<ion-grid *ngIf="gameplaysService.isTabSelected('Histórico', gameplaysService.playEditOption)">
+		<ion-card *ngFor="let history of gameplaysService.buildHistoriesToShowMap.get(gameplaysService.currentPage)" class="history-card-style">
+			<ion-text class="history-text-style">{{history.text}}</ion-text>
+		</ion-card>
+	</ion-grid>
+
+	<ion-grid 	*ngIf="gameplaysService.isTabSelected('Histórico', gameplaysService.playEditOption)" 
+				fixed slot="fixed" style="background-color: rgb(78, 16, 116); position: absolute; bottom: 50px;">
+		<ion-row>
+			<ion-col size="2"></ion-col>
+			<ion-col size="2">
+				<ion-button (click)="gameplaysService.backPage()" style="--background: rgb(11, 2, 19, 0);">
+					<ion-icon slot="icon-only" name="arrow-back-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="4">
+				<ion-card color="none" class="page-number-card-style">
+					<ion-label class="page-number-text-style">Página {{gameplaysService.currentPage}}</ion-label>
+				</ion-card>
+			</ion-col>
+			<ion-col size="2">
+				<ion-button (click)="gameplaysService.forwardPage('History')" style="--background: rgb(11, 2, 19, 0);">
+					<ion-icon slot="icon-only" name="arrow-forward-circle"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="2"></ion-col>
+		</ion-row>
+	</ion-grid>
+	<div style="margin-bottom: 130px;"></div>
+
+	<div style="margin-bottom: 130px;"></div>
+</ion-content>

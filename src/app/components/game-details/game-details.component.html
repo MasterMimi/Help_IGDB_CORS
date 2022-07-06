@@ -1,0 +1,137 @@
+<ion-header>
+	<ion-toolbar class="header">
+		<ion-buttons slot="start">
+			<ion-back-button defaultHref='search'></ion-back-button>
+			<ion-button [routerLink]="gameplaysService.comingFromGameplays ? '/gameplays/playing-games' : '/search'">
+				<ion-img src="./assets/images/double-back.png"></ion-img>
+				<ion-icon slot="icon-only" name="home"></ion-icon>
+			</ion-button>
+		</ion-buttons>
+		<ion-title class="title">Detalhes</ion-title>
+	</ion-toolbar>
+</ion-header>
+<ion-content class="background">
+	<ion-grid fixed>
+		<ion-row>
+			<ion-col size="6">
+				<ion-img [src]="gameToShow.coverURL" class="cover-style"></ion-img>
+				<ion-row>
+					<ion-col size="5">
+						<ion-card class="rating-card-style">
+							<ion-text>{{gameToShow.rating}}<br></ion-text>
+						</ion-card>
+					</ion-col>
+					<ion-col size="7">
+						<ion-card class="date-card-style">
+							<ion-text>{{gameToShow.releaseDateFormatted}}<br></ion-text>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-card class="agerating-card-style">
+							<ion-text *ngFor="let ageRating of gameToShow.ageRatings">-- {{ageRating}} --<br></ion-text>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+			</ion-col>
+			<ion-col size="6">
+				<ion-row>
+					<ion-col size="12">
+						<ion-card class="name-card-style">
+							<ion-text>{{gameToShow.gameName}} <br></ion-text>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-card class="genre-card-style">
+							<ion-text *ngFor="let genre of gameToShow.genreNames">> {{genre}}<br></ion-text>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-card class="platform-card-style">
+							<ion-text *ngFor="let platform of gameToShow.platforms">* {{platform}}<br></ion-text>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-card class="company-card-style">
+							<ion-text *ngFor="let company of gameToShow.companies">- {{company}}<br></ion-text>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-card class="franchise-card-style">
+							<ion-text *ngFor="let franchise of gameToShow.franchises">~ {{franchise}}<br></ion-text>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+			</ion-col>
+		</ion-row>
+		<ion-row>
+			<ion-col size="8"></ion-col>
+			<ion-col size="2">
+				<ion-button class="add-game-button-style" (click)="this.gameplaysService.confirmGameAdding(gameToShow)">
+					<ion-icon slot="icon-only" name="add"></ion-icon>
+				</ion-button>
+			</ion-col>
+			<ion-col size="2">
+				<ion-card class="warning-card-style" *ngIf="this.gameplaysService.isGameAlreadyAdded(gameToShow.gameId)">
+					<ion-text>
+						<ion-img src="./assets/images/warning.png"></ion-img>
+					</ion-text>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+		<ion-row *ngIf="gameToShow.description != null">
+			<ion-col size="4">
+				<ion-card class="title-description-card-style">
+					<ion-text>Descrição<br></ion-text>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+		<ion-row class="description-section-margin">
+			<ion-col size="12">
+				<ion-card class="description-card-style">
+					<ion-text *ngIf="gameToShow.description != null; else noDescription">{{gameToShow.description}}<br></ion-text>
+					<ng-template #noDescription>
+						<ion-text>Sem descrição registrada<br></ion-text>
+					</ng-template>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+
+		<ion-spinner *ngIf="databaseService.loadingSimilarGames" name="bubbles" class="loading-style"></ion-spinner>
+		<ion-row *ngIf="gameToShow.similarBuildGames.length != 0;">
+			<ion-col size="5">
+				<ion-card class="title-similar-games-card-style">
+					<ion-text>Jogos similares<br></ion-text>
+				</ion-card>
+			</ion-col>
+		</ion-row>
+		<ion-row class="similar-games-section-margin">
+			<ion-col size="4" (click)="redirectToSimilarGame(similarGame.gameId)" *ngFor="let similarGame of gameToShow.similarBuildGames">
+				<ion-row>
+					<ion-col size="12">
+						<ion-card class="similar-name-card-style">
+							<ion-label *ngIf="similarGame.gameName.length <= 25; else showFormatted;" class="similar-name-text-style">{{similarGame.gameName}}</ion-label>
+							<ng-template #showFormatted>
+								<ion-label class="similar-name-text-style">{{similarGame.formattedName}}</ion-label>
+							</ng-template>
+						</ion-card>
+					</ion-col>
+				</ion-row>
+				<ion-row>
+					<ion-col size="12">
+						<ion-img [src]=similarGame.coverURL class="cover-style"></ion-img>
+					</ion-col>
+				</ion-row>
+			</ion-col>
+		</ion-row>
+	</ion-grid>
+</ion-content> 
